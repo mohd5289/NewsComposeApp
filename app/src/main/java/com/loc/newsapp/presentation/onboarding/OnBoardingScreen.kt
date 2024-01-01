@@ -1,7 +1,10 @@
 package com.loc.newsapp.presentation.onboarding
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -12,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
@@ -26,6 +30,7 @@ import com.loc.newsapp.presentation.common.NewsButton
 import com.loc.newsapp.presentation.common.NewsTextButton
 import com.loc.newsapp.presentation.onboarding.components.OnBoardingPage
 import com.loc.newsapp.presentation.onboarding.components.PageIndicator
+import com.loc.newsapp.ui.theme.NewsAppTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -88,3 +93,13 @@ fun OnBoardingScreen(){
 
 }
 
+@Preview(showBackground = true)
+@Preview(uiMode = UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+fun OnBoardingScreenPreview(){
+    NewsAppTheme {
+        Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)){
+            OnBoardingScreen()
+        }
+}
+}
