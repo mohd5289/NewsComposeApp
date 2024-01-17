@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.loc.newsapp.presentation.Dimens.MediumPadding2
 import com.loc.newsapp.presentation.Dimens.PageIndicatorWidth
 import com.loc.newsapp.presentation.common.NewsButton
@@ -35,7 +36,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen(){
+fun OnBoardingScreen(event: (OnBoardingEvent)->Unit){
 
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState (initialPage = 0){
@@ -78,8 +79,8 @@ fun OnBoardingScreen(){
                 NewsButton(text = buttonState.value[1],
                     onClick = {
                         scope.launch {
-                            if(pagerState.currentPage == 3){
-                               //TODO : Navigate to home screen
+                            if(pagerState.currentPage == 2){
+                              event(OnBoardingEvent.SaveAppEntry);
                             }else{
                                 pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
                             }
@@ -97,9 +98,10 @@ fun OnBoardingScreen(){
 @Preview(uiMode = UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun OnBoardingScreenPreview(){
-    NewsAppTheme {
+//    val viewModel:OnBoardingViewModel= hiltViewModel();
+   NewsAppTheme {
         Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)){
-            OnBoardingScreen()
+            OnBoardingScreen(event={})
         }
 }
 }
